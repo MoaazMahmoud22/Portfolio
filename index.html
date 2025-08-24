@@ -60,13 +60,37 @@
       .card { transition: transform .25s ease, box-shadow .25s ease; }
       .card:hover { transform: translateY(-3px); box-shadow: 0 15px 45px rgba(2,6,23,.15); }
     </style>
+    <style>
+  /* Mobile Menu Animation */
+  #mobileMenu {
+    transition: all 0.3s ease;
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  
+  #mobileMenu.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .mobile-nav-link {
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  
+  .mobile-nav-link:hover {
+    background-color: rgba(58, 151, 255, 0.1);
+  }
+</style>
 
     <!-- Typed.js for animated tagline -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
   </head>
 
   <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans">
-    <!-- ===== Top Nav ===== -->
+    <!-- ===== Top Nav with Mobile Menu ===== -->
     <header class="sticky top-0 z-50 border-b border-slate-200/60 dark:border-slate-800/60 bg-white/75 dark:bg-slate-950/75 backdrop-blur supports-[backdrop-filter]:bg-white/60">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         <a href="#home" class="flex items-center gap-3 group">
@@ -75,6 +99,8 @@
           </div>
           <span class="text-slate-900 dark:text-white font-semibold tracking-tight group-hover:text-brand-600">Moaaz Mahmoud</span>
         </a>
+        
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex items-center gap-6 text-sm">
           <a href="#assurify" class="hover:text-brand-600">Graduation Project</a>
           <a href="#projects" class="hover:text-brand-600">Projects</a>
@@ -82,16 +108,60 @@
           <a href="#skills" class="hover:text-brand-600">Skills</a>
           <a href="#contact" class="hover:text-brand-600">Contact</a>
         </nav>
+        
         <div class="flex items-center gap-2">
+          <!-- Theme Toggle -->
           <button id="themeToggle" class="p-2 rounded-lg ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle dark mode">
             <svg id="sun" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden dark:inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4V2M12 22v-2M4 12H2M22 12h-2M5.64 5.64 4.22 4.22M19.78 19.78l-1.42-1.42M5.64 18.36 4.22 19.78M19.78 4.22l-1.42 1.42"/><circle cx="12" cy="12" r="4"/></svg>
             <svg id="moon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           </button>
+          
+          <!-- Download CV -->
           <a href="#" id="downloadCV" class="hidden sm:inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium bg-brand-600 text-white hover:bg-brand-700 shadow-soft" download>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l4-5h-3V4h-2v7H8l4 5z"/><path d="M20 18H4v2h16v-2z"/></svg>
             Download CV
           </a>
+          
+          <!-- Mobile Menu Button -->
+          <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg ring-1 ring-slate-200 dark:ring-slate-700 hover:bg-slate-100 dark:hover:bg-slate-800" aria-label="Toggle mobile menu">
+            <svg id="hamburger" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg id="close" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
         </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200/60 dark:border-slate-800/60 bg-white/95 dark:bg-slate-950/95 backdrop-blur">
+        <nav class="max-w-7xl mx-auto px-4 py-4 space-y-3">
+          <a href="#assurify" class="block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-600 font-medium mobile-nav-link">
+            🎓 Graduation Project
+          </a>
+          <a href="#projects" class="block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-600 font-medium mobile-nav-link">
+            🚀 Projects
+          </a>
+          <a href="#about" class="block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-600 font-medium mobile-nav-link">
+            👨‍💻 About
+          </a>
+          <a href="#skills" class="block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-600 font-medium mobile-nav-link">
+            🛠️ Skills
+          </a>
+          <a href="#contact" class="block py-2 text-slate-700 dark:text-slate-300 hover:text-brand-600 font-medium mobile-nav-link">
+            📧 Contact
+          </a>
+          <div class="pt-3 border-t border-slate-200 dark:border-slate-700">
+            <a href="#" id="downloadCVMobile" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-brand-600 text-white hover:bg-brand-700 shadow-soft" download>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l4-5h-3V4h-2v7H8l4 5z"/><path d="M20 18H4v2h16v-2z"/></svg>
+              Download CV
+            </a>
+          </div>
+        </nav>
       </div>
     </header>
     <!-- ===== Hero / About Me ===== -->
@@ -697,6 +767,60 @@
     } catch (e) {}
 
     </script>
+    <script>
+  // Mobile Menu Toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburger = document.getElementById('hamburger');
+    const closeIcon = document.getElementById('close');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+      const isHidden = mobileMenu.classList.contains('hidden');
+      
+      if (isHidden) {
+        // Show menu
+        mobileMenu.classList.remove('hidden');
+        setTimeout(() => mobileMenu.classList.add('show'), 10);
+        hamburger.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+      } else {
+        // Hide menu
+        mobileMenu.classList.remove('show');
+        hamburger.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+      }
+    });
+    
+    // Close menu when clicking nav links
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('show');
+        hamburger.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+      });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!mobileMenuBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        if (!mobileMenu.classList.contains('hidden')) {
+          mobileMenu.classList.remove('show');
+          hamburger.classList.remove('hidden');
+          closeIcon.classList.add('hidden');
+          setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+        }
+      }
+    });
+    
+    // Set CV download links
+    document.getElementById('downloadCV').setAttribute('href', './MoaazMahmoudCV.pdf');
+    document.getElementById('downloadCVMobile').setAttribute('href', './MoaazMahmoudCV.pdf');
+  });
+</script>
   </body>
 </html>
-
